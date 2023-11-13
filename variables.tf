@@ -4,6 +4,12 @@ variable "region" {
   type        = string
   default     = "us-east-2"
 }
+
+variable "vpc_id" {
+  type        = string
+  description = "The ID of the VPC that the instance security group belongs to"
+}
+
 #Define IAM User Access Key
 variable "access_key" {
   description = "The access_key that belongs to the IAM user"
@@ -49,7 +55,7 @@ variable "VPCID" {
   default     = ""
 }
 
-variable "security_group" {
+variable "security_groups" {
   description = "New Security Group to be provisioned for ALB"
   type        = string
   default     = "sg1"
