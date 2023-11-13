@@ -46,7 +46,7 @@ variable "instance" {
 
 variable "SUBNET_ID" {
   description = "Subnets of the EC2 Instances"
-  default     = ["subnet-08e0979ae4f944994","subnet-0f30253c5144b9cbe"]
+  default     = [""]
   type        = list(any)
 }
 
@@ -156,7 +156,7 @@ variable "ServiceCriticality" {
   default     = ""
 
   validation {
-   condition     = contains(["High","Low"," Medium"], var.ServiceCriticality)
+   condition     = contains(["High","Low","Medium"], var.ServiceCriticality)
    error_message = "Please provide a valid Service Criticality, Valid values are High, Low and Medium"
  }
 }
