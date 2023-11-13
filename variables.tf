@@ -50,10 +50,6 @@ variable "SUBNET_ID" {
   type        = list(any)
 }
 
-variable "VPCID" {
-  description = "VPC ID"
-  default     = ""
-}
 
 variable "security_groups" {
   description = "New Security Group to be provisioned for ALB"
