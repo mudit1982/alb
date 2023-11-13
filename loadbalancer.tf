@@ -96,6 +96,5 @@ resource "aws_lb" "front" {
       BusinessOwner = var.BusinessOwner,
       BusinessTower = var.BusinessTower,
       ServiceCriticality = var.ServiceCriticality,
-      Subnet-id = var.SUBNET_ID,
       VPC-id = var.VPCID})
   }
