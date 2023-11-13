@@ -56,7 +56,7 @@ module "aws_security_group" {
   # sg_count = length(var.security_groups)
   name = var.security_groups
   description = var.secgroupdescription
-  vpc_id      = var.vpc_id
+  vpc_id      = var.VPCID
 
 } 
 

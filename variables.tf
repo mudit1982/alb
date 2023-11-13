@@ -5,7 +5,7 @@ variable "region" {
   default     = "us-east-2"
 }
 
-variable "vpc_id" {
+variable "VPCID" {
   type        = string
   description = "The ID of the VPC that the instance security group belongs to"
 }

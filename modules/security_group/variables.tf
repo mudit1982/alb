@@ -1,6 +1,6 @@
 variable "name" {
   description = "Name of the ELB Security Group to be created"
-  type = string
+
 
   }
 
