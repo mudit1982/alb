@@ -42,13 +42,38 @@ resource "aws_lb_listener" "front_end" {
   }
 }
 
-module "security_group" {
-  source      = "./modules/security_group"
-  name        = lookup(var.awsprops, "secgroupname")
-  description = lookup(var.awsprops, "secgroupname")
-  vpc_id      = lookup(var.awsprops, "vpc")
+# module "security_group" {
+#   source      = "./modules/security_group"
+#   name        = lookup(var.awsprops, "secgroupname")
+#   description = lookup(var.awsprops, "secgroupname")
+#   vpc_id      = lookup(var.awsprops, "vpc")
 
+# }
+
+
+module "aws_security_group" {
+  source      = "./modules/security_group"
+  # sg_count = length(var.security_groups)
+  name = var.security_groups
+  description = var.secgroupdescription
+  vpc_id      = var.vpc_id
+
+} 
+
+
+resource "aws_security_group_rule" "ingress_rules" {
+
+  count = length(var.ingress_rules)
+
+  type              = "ingress"
+  from_port         = var.ingress_rules[count.index].from_port
+  to_port           = var.ingress_rules[count.index].to_port
+  protocol          = var.ingress_rules[count.index].protocol
+  cidr_blocks       = [var.ingress_rules[count.index].cidr_block]
+  description       = var.ingress_rules[count.index].description
+  security_group_id = module.aws_security_group.id[count.index]
 }
+
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb
 resource "aws_lb" "front" {
@@ -56,10 +81,10 @@ resource "aws_lb" "front" {
   # count     = length(var.SUBNET_ID)
   internal           = false
   load_balancer_type = "application"
-  # security_groups    = [aws_security_group.lb.id]
-  security_groups     = [module.security_group.id]
-  # subnets            = [for subnet in aws_subnet.public : subnet.id]
-  subnets            = ["subnet-08e0979ae4f944994","subnet-0f30253c5144b9cbe"]
+  security_groups    = [module.aws_security_group.id]
+  # security_groups     = [module.security_group.id]
+  subnets            = [for subnet in SUBNET_ID : subnet.id]
+  # subnets            = ["subnet-08e0979ae4f944994","subnet-0f30253c5144b9cbe"]
   # subnets             =      element(var.SUBNET_ID[*],count.index)
 
   enable_deletion_protection = false
