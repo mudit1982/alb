@@ -84,8 +84,8 @@ resource "aws_lb" "front" {
   load_balancer_type = "application"
   security_groups    = [module.aws_security_group.id]
   # security_groups     = [module.security_group.id]
-  subnets            = [for subnet in var.SUBNET_ID : subnet.id]
-  # subnets            = ["subnet-08e0979ae4f944994","subnet-0f30253c5144b9cbe"]
+  # subnets            = [for subnet in var.SUBNET_ID : subnet.id]
+  subnets            = ["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7"]
   # subnets             =      element(var.SUBNET_ID[*],count.index)
 
   enable_deletion_protection = false
