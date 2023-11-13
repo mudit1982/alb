@@ -6,7 +6,7 @@ locals {
 
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group
-resource "aws_lb_target_group" "front" {
+resource "aws_lb_target_group" "project-iac-target-group" {
   name     = "application-front"
   port     = 80
   protocol = "HTTP"
@@ -26,19 +26,19 @@ resource "aws_lb_target_group" "front" {
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group_attachment
 resource "aws_lb_target_group_attachment" "attach-app1" {
   count            = length(var.instance)
-  target_group_arn = aws_lb_target_group.front.arn
+  target_group_arn = aws_lb_target_group.project-iac-target-group.arn
   target_id        = element(var.instance[*], count.index)
   port             = 80
 }
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener
-resource "aws_lb_listener" "front_end" {
+resource "aws_lb_listener" "project-iac-listener" {
   load_balancer_arn = aws_lb.front.arn
   port              = "80"
   protocol          = "HTTP"
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.front.arn
+    target_group_arn = aws_lb_target_group.project-iac-target.arn
   }
 }
 
@@ -77,7 +77,7 @@ resource "aws_security_group_rule" "ingress_rules" {
 
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb
-resource "aws_lb" "front" {
+resource "aws_lb" "project-iac-app-lb" {
   name               = "front"
   # count     = length(var.SUBNET_ID)
   internal           = false
