@@ -90,7 +90,7 @@ resource "aws_lb" "front" {
 
   enable_deletion_protection = false
 
-  tags = {merge(tomap(var.alb_tags),{ApplicationFunctionality = var.ApplicationFunctionality, 
+  tags = merge(tomap(var.alb_tags),{ApplicationFunctionality = var.ApplicationFunctionality, 
       ApplicationOwner = var.ApplicationOwner, 
       ApplicationTeam = var.ApplicationTeam, 
       BusinessOwner = var.BusinessOwner,
@@ -99,4 +99,3 @@ resource "aws_lb" "front" {
       Subnet-id = var.SUBNET_ID,
       VPC-id = var.VPCID})
   }
-}
