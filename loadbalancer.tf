@@ -5,7 +5,7 @@ locals {
 
 
 
-
+##All these should be used as variables
 resource "aws_lb_target_group" "front" {
   name     = "application-front"
   port     = 80
