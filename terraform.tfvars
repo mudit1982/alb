@@ -1,6 +1,6 @@
 VPCID="vpc-0419802ed12eec58a"
 #EC2 instances to be added as target group
-instance=["i-048cd1fcf3d37c93c","i-0ed6a83151ae64d3c"]
+instance=["i-0740f975731f86f00","i-0af14f33f3427a7f5"]
 SUBNET_ID=["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7"]
 
 alb_tags = {

@@ -71,7 +71,7 @@ resource "aws_security_group_rule" "ingress_rules" {
 
 
 resource "aws_lb" "front" {
-  name               = "front"
+  name               = "EG-ALB-TEST"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [module.aws_security_group.id]
