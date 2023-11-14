@@ -43,6 +43,18 @@ variable "instance" {
   type        = list(any)
 }
 
+variable "port" {
+  description = "List of Ports for the Listners"
+  default     = [""]
+  type        = list(any)
+}
+
+variable "protocol" {
+  description = "List of Protocols for the Listeners"
+  default     = [""]
+  type        = list(any)
+}
+
 
 variable "SUBNET_ID" {
   description = "Subnets of the EC2 Instances"
@@ -55,6 +67,12 @@ variable "security_groups" {
   description = "New Security Group to be provisioned for ALB"
   type        = string
   default     = "sg1"
+}
+
+variable "existing_security_group_ids" {
+  description = "A list of existing Security Group IDs to associate with the Load Balancer."
+  type        = list(string)
+  default     = [""]
 }
 
 variable "secgroupdescription" {

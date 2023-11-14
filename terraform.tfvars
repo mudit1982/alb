@@ -2,6 +2,9 @@ VPCID="vpc-0419802ed12eec58a"
 #EC2 instances to be added as target group
 instance=["i-0740f975731f86f00","i-0af14f33f3427a7f5"]
 SUBNET_ID=["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7"]
+existing_security_group_ids=[""]
+port = ["80","8080"]
+protocol=["HTTP","HTTPS"]
 
 alb_tags = {
       TicketReference            = "CHG0050760"
@@ -30,5 +33,20 @@ ingress_rules =[
       protocol    = "tcp"
       cidr_block  = "192.168.161.215/32"
       description = "ELB"
+    }.
+
+    {
+      from_port   = "8080"
+      to_port     = "8080"
+      protocol    = "tcp"
+      cidr_block  = "192.168.161.215/32"
+      description = "ELB Port 8080"
+    },
+{
+      from_port   = "1234"
+      to_port     = "1234"
+      protocol    = "tcp"
+      cidr_block  = "192.168.161.215/32"
+      description = "ELB Port 1234"
     }
 ]

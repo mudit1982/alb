@@ -35,8 +35,11 @@ resource "aws_lb_target_group_attachment" "attach-app1" {
 
 resource "aws_lb_listener" "front_end" {
   load_balancer_arn = aws_lb.front.arn
-  port              = "80"
-  protocol          = "HTTP"
+  # port              = "80"
+  # protocol          = "HTTP"
+  count = length(var.port)
+  port    = var.port[count.index]
+  protocol  = var.protocol[count.index]
 
   default_action {
     type             = "forward"
@@ -74,10 +77,11 @@ resource "aws_lb" "front" {
   name               = "EG-ALB-TEST"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [module.aws_security_group.id]
+  # security_groups    = [module.aws_security_group.id]
+  security_groups    =  concat(module.aws_security_group.id , var.existing_security_group_ids[*])
   # security_groups     = [module.security_group.id]
   subnets            = [for subnet in var.SUBNET_ID : subnet]
-
+  
 
   enable_deletion_protection = false
 
