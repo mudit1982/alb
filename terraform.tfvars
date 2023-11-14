@@ -33,7 +33,7 @@ ingress_rules =[
       protocol    = "tcp"
       cidr_block  = "192.168.161.215/32"
       description = "ELB"
-    }.
+    },
 
     {
       from_port   = "8080"
