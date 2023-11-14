@@ -78,7 +78,7 @@ resource "aws_lb" "front" {
   internal           = false
   load_balancer_type = "application"
   # security_groups    = [module.aws_security_group.id]
-  security_groups    =  concat(module.aws_security_group.id , var.existing_security_group_ids[*])
+  security_groups    =  concat([module.aws_security_group.id] , var.existing_security_group_ids[*])
   # security_groups     = [module.security_group.id]
   subnets            = [for subnet in var.SUBNET_ID : subnet]
   
