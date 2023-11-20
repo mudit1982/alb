@@ -51,7 +51,10 @@ ingress_rules =[
     }
 ]
 
-target_group = {
+
+
+target_group =[
+{
     healthy_threshold   = 3
     interval            = 10
     matcher             = 200
@@ -60,5 +63,6 @@ target_group = {
     protocol            = "HTTP"
     timeout             = 3
     unhealthy_threshold = 2
-}
+    }
+]
 

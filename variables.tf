@@ -204,8 +204,28 @@ variable "alb_tags" {
 
 
 variable "target_group" {
- type = map(object)
+ type = list(object){}
 #  default = {
 
 #  }
 }
+
+
+variable "target_group" {
+  type = list(object({
+    healthy_threshold   = number
+    interval            = number
+    matcher             = number
+    path                = string
+    port                = string
+    protocol            = string
+    timeout             = number
+    unhealthy_threshold = number
+  }))
+  default = [
+
+  ]
+}
+
+
+   
