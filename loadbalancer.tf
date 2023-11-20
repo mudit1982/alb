@@ -11,7 +11,7 @@ locals {
 
 
     "healthy_threshold"  = 3
-    "interval "           = 10
+    "interval"           = 10
     "matcher"             = 200
     "path"              = "/"
     "port"                = "traffic-port"
