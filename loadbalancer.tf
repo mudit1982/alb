@@ -5,11 +5,6 @@ locals {
 
 locals {
   target_group = {
-    # "t2.micro"   = "free tier"
-    # "m5.large"   = "general purpose"
-    # "c5.xlarge"  = "compute optimized"
-
-
     "healthy_threshold"  = 3
     "interval"           = 10
     "matcher"             = 200
@@ -29,6 +24,12 @@ resource "aws_lb_target_group" "front" {
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.VPCID
+
+  stickiness {
+    enabled = true
+    type    = "lb_cookie"
+  }
+
   health_check {
     enabled             = true
     healthy_threshold   = lookup ( local.target_group , "healthy_threshold")
