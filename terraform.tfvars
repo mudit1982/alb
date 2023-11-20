@@ -54,14 +54,14 @@ ingress_rules =[
 
 
 target_group = {
-    healthy_threshold   = 3
-    interval            = 10
-    matcher             = 200
+    healthy_threshold   = "3"
+    interval            = "10"
+    matcher             = "200"
     path                = "/"
     port                = "traffic-port"
     protocol            = "HTTP"
-    timeout             = 3
-    unhealthy_threshold = 2
+    timeout             = "3"
+    unhealthy_threshold = "2"
     }
 
 
