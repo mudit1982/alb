@@ -13,14 +13,15 @@ resource "aws_lb_target_group" "front" {
   vpc_id   = var.VPCID
   health_check {
     enabled             = true
-    healthy_threshold   = 3
-    interval            = 10
-    matcher             = 200
-    path                = "/"
-    port                = "traffic-port"
-    protocol            = "HTTP"
-    timeout             = 3
-    unhealthy_threshold = 2
+    healthy_threshold   = lookup ( var.target_group , healthy_threshold)
+    interval            = lookup ( var.target_group , interval)
+    matcher             = lookup ( var.target_group , matcher)
+    path                = lookup ( var.target_group , path)
+    port                = lookup (var.target_group , port)
+    protocol            = lookup (var.target_group , protocol)
+    timeout             = lookup (var.target_group , timeout)
+    unhealthy_threshold = lokup ( var.target_group_arn , unhealthy_threshold)
+    
   }
 }
 
@@ -83,7 +84,7 @@ resource "aws_lb" "front" {
   subnets            = [for subnet in var.SUBNET_ID : subnet]
   
 
-  enable_deletion_protection = false
+  enable_deletion_protection = true
 
   tags = merge(tomap(var.alb_tags),{ApplicationFunctionality = var.ApplicationFunctionality, 
       ApplicationOwner = var.ApplicationOwner, 
