@@ -205,19 +205,19 @@ variable "alb_tags" {
 
 
 
-variable "target_group" {
-  type = map(object({
-    healthy_threshold   = number
-    interval            = number
-    matcher             = number
-    path                = string
-    port                = string
-    protocol            = string
-    timeout             = number
-    unhealthy_threshold = number
-  }))
+# variable "target_group" {
+#   type = map(object({
+#     healthy_threshold   = number
+#     interval            = number
+#     matcher             = number
+#     path                = string
+#     port                = string
+#     protocol            = string
+#     timeout             = number
+#     unhealthy_threshold = number
+#   }))
 
-}
+# }
 
 
    
