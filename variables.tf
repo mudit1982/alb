@@ -206,7 +206,7 @@ variable "alb_tags" {
 
 
 variable "target_group" {
-  type = list(object({
+  type = map(object({
     healthy_threshold   = number
     interval            = number
     matcher             = number
