@@ -53,7 +53,7 @@ ingress_rules =[
 
 
 
-target_group =[
+target_group =
 {
     healthy_threshold   = 3
     interval            = 10
@@ -64,5 +64,5 @@ target_group =[
     timeout             = 3
     unhealthy_threshold = 2
     }
-]
+
 

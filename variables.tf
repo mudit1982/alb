@@ -216,9 +216,7 @@ variable "target_group" {
     timeout             = number
     unhealthy_threshold = number
   }))
-  default = [
 
-  ]
 }
 
 
