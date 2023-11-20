@@ -13,18 +13,14 @@ resource "aws_lb_target_group" "front" {
   vpc_id   = var.VPCID
   health_check {
     enabled             = true
-    healthy_threshold   = var.target_group.healthy_threshold
-    interval            = var.target_group.internal
-    matcher             = var.target_group.matcher
-    path                = var.target_group.path
-    port                = var.target_group.port
-    protocol            = var.target_group.protocol
-    timeout             = var.target_group.timeout
-    unhealthy_threshold = var.target_group.unhealthy_threshold
-
-    # protocol            = lookup ( var.target_group , "protocol")
-    # timeout             = lookup ( var.target_group , "timeout")
-    # unhealthy_threshold = lookup ( var.target_group , "unhealthy_threshold")
+    healthy_threshold   = lookup ( var.target_group , "healthy_threshold" , "")
+    interval            = lookup ( var.target_group , "interval" , "") 
+    matcher             = lookup ( var.target_group , "matcher" , "")
+    path                = lookup ( var.target_group , "path" , "")
+    port                = lookup ( var.target_group , "port" , "")
+    protocol            = lookup ( var.target_group , "protocol" , "")
+    timeout             = lookup ( var.target_group , "timeout" , "")
+    unhealthy_threshold = lookup ( var.target_group , "unhealthy_threshold" , "")
     
   }
 }
