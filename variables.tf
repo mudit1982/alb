@@ -209,13 +209,13 @@ variable "target_group" {
   type = map(string)
   default ={
     healthy_threshold  =  3
-    interval            = "10"
-    matcher             = "200"
+    interval            = 10
+    matcher             = 200
     path                = "/"
     port                = "traffic-port"
     protocol            = "HTTP"
-    timeout             = "3"
-    unhealthy_threshold = "2"
+    timeout             = 3
+    unhealthy_threshold = 2
   }
   
 }

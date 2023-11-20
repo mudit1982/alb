@@ -1,8 +1,8 @@
 VPCID="vpc-0419802ed12eec58a"
 #EC2 instances to be added as target group
-instance=["i-0740f975731f86f00","i-0af14f33f3427a7f5"]
+instance=["i-06450e21d58084255","i-0ea77aa338a3ed31b"]
 SUBNET_ID=["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7"]
-existing_security_group_ids=[""]
+existing_security_group_ids=["sg-0294c098f15df980e"]
 port = ["80","443"]
 protocol=["HTTP","HTTPS"]
 
@@ -55,13 +55,13 @@ ingress_rules =[
 
 target_group = {
     healthy_threshold   =  3
-    interval            = "10"
-    matcher             = "200"
+    interval            = 10
+    matcher             = 200
     path                = "/"
     port                = "traffic-port"
     protocol            = "HTTP"
-    timeout             = "3"
-    unhealthy_threshold = "2"
+    timeout             = 3
+    unhealthy_threshold = 2
     }
 
 
