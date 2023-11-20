@@ -53,8 +53,7 @@ ingress_rules =[
 
 
 
-target_group =
-{
+target_group = {
     healthy_threshold   = 3
     interval            = 10
     matcher             = 200
