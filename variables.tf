@@ -208,7 +208,7 @@ variable "alb_tags" {
 variable "target_group" {
   type = map(string)
   default ={
-    healthy_threshold  =  "3"
+    healthy_threshold  =  3
     interval            = "10"
     matcher             = "200"
     path                = "/"
