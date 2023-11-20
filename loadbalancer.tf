@@ -27,7 +27,7 @@ resource "aws_lb_target_group" "front" {
 
 ##Enable/Disable stickiness  
   stickiness {
-    enabled = var.stick
+    enabled = var.stick_session
     type    = "lb_cookie"
   }
 
