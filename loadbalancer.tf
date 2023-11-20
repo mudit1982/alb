@@ -25,23 +25,14 @@ resource "aws_lb_target_group" "front" {
   protocol = "HTTP"
   vpc_id   = var.VPCID
 
+##Enable/Disable stickiness  
   stickiness {
-    enabled = true
+    enabled = var.stick
     type    = "lb_cookie"
   }
 
   health_check {
     enabled             = true
-    # healthy_threshold   = lookup ( local.target_group , "healthy_threshold")
-    # interval            = lookup ( local.target_group , "interval") 
-    # matcher             = lookup ( local.target_group , "matcher")
-    # path                = lookup ( local.target_group , "path")
-    # port                = lookup ( local.target_group , "port")
-    # protocol            = lookup ( local.target_group , "protocol")
-    # timeout             = lookup ( local.target_group , "timeout")
-    # unhealthy_threshold = lookup ( local.target_group , "unhealthy_threshold")
-
-
     healthy_threshold   = lookup ( var.target_group , "healthy_threshold")
     interval            = lookup ( var.target_group , "interval") 
     matcher             = lookup ( var.target_group , "matcher")
