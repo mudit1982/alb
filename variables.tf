@@ -205,19 +205,20 @@ variable "alb_tags" {
 
 
 
-# variable "target_group" {
-#   type = map(object({
-#     healthy_threshold   = number
-#     interval            = number
-#     matcher             = number
-#     path                = string
-#     port                = string
-#     protocol            = string
-#     timeout             = number
-#     unhealthy_threshold = number
-#   }))
-
-# }
+variable "target_group" {
+  type = map(string)
+  default ={
+    healthy_threshold  =  "3"
+    interval            = "10"
+    matcher             = "200"
+    path                = "/"
+    port                = "traffic-port"
+    protocol            = "HTTP"
+    timeout             = "3"
+    unhealthy_threshold = "2"
+  }
+  
+}
 
 
    

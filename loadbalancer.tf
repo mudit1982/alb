@@ -32,14 +32,24 @@ resource "aws_lb_target_group" "front" {
 
   health_check {
     enabled             = true
-    healthy_threshold   = lookup ( local.target_group , "healthy_threshold")
-    interval            = lookup ( local.target_group , "interval") 
-    matcher             = lookup ( local.target_group , "matcher")
-    path                = lookup ( local.target_group , "path")
-    port                = lookup ( local.target_group , "port")
-    protocol            = lookup ( local.target_group , "protocol")
-    timeout             = lookup ( local.target_group , "timeout")
-    unhealthy_threshold = lookup ( local.target_group , "unhealthy_threshold")
+    # healthy_threshold   = lookup ( local.target_group , "healthy_threshold")
+    # interval            = lookup ( local.target_group , "interval") 
+    # matcher             = lookup ( local.target_group , "matcher")
+    # path                = lookup ( local.target_group , "path")
+    # port                = lookup ( local.target_group , "port")
+    # protocol            = lookup ( local.target_group , "protocol")
+    # timeout             = lookup ( local.target_group , "timeout")
+    # unhealthy_threshold = lookup ( local.target_group , "unhealthy_threshold")
+
+
+    healthy_threshold   = lookup ( var.target_group , "healthy_threshold")
+    interval            = lookup ( var.target_group , "interval") 
+    matcher             = lookup ( var.target_group , "matcher")
+    path                = lookup ( var.target_group , "path")
+    port                = lookup ( var.target_group , "port")
+    protocol            = lookup ( var.target_group , "protocol")
+    timeout             = lookup ( var.target_group , "timeout")
+    unhealthy_threshold = lookup ( var.target_group , "unhealthy_threshold")
     
   }
 }
@@ -53,7 +63,7 @@ resource "aws_lb_target_group_attachment" "attach-app1" {
   port             = 80
 }
 
-
+## Unable to Create HTTPS Listener as certificate is required
 resource "aws_lb_listener" "front_end" {
   load_balancer_arn = aws_lb.front.arn
   # port              = "80"
@@ -103,8 +113,8 @@ resource "aws_lb" "front" {
   # security_groups     = [module.security_group.id]
   subnets            = [for subnet in var.SUBNET_ID : subnet]
   
-
-  enable_deletion_protection = true
+# If enabled Terraform would not be able to delete the LB
+  enable_deletion_protection = false
 
   tags = merge(tomap(var.alb_tags),{ApplicationFunctionality = var.ApplicationFunctionality, 
       ApplicationOwner = var.ApplicationOwner, 
