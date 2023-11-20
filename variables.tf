@@ -201,3 +201,11 @@ variable "alb_tags" {
 
   ]
 }
+
+
+variable "target_group" {
+ type = map(object)
+#  default = {
+
+#  }
+}

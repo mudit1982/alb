@@ -3,7 +3,7 @@ VPCID="vpc-0419802ed12eec58a"
 instance=["i-0740f975731f86f00","i-0af14f33f3427a7f5"]
 SUBNET_ID=["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7"]
 existing_security_group_ids=[""]
-port = ["80","8080"]
+port = ["80","443"]
 protocol=["HTTP","HTTPS"]
 
 alb_tags = {
@@ -50,3 +50,15 @@ ingress_rules =[
       description = "ELB Port 1234"
     }
 ]
+
+target_group = {
+    healthy_threshold   = 3
+    interval            = 10
+    matcher             = 200
+    path                = "/"
+    port                = "traffic-port"
+    protocol            = "HTTP"
+    timeout             = 3
+    unhealthy_threshold = 2
+}
+
