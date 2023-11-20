@@ -203,12 +203,6 @@ variable "alb_tags" {
 }
 
 
-variable "target_group" {
- type = list(object){}
-#  default = {
-
-#  }
-}
 
 
 variable "target_group" {

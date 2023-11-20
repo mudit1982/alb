@@ -17,10 +17,10 @@ resource "aws_lb_target_group" "front" {
     interval            = lookup ( var.target_group , interval)
     matcher             = lookup ( var.target_group , matcher)
     path                = lookup ( var.target_group , path)
-    port                = lookup (var.target_group , port)
-    protocol            = lookup (var.target_group , protocol)
-    timeout             = lookup (var.target_group , timeout)
-    unhealthy_threshold = lokup ( var.target_group , unhealthy_threshold)
+    port                = lookup ( var.target_group , port)
+    protocol            = lookup ( var.target_group , protocol)
+    timeout             = lookup ( var.target_group , timeout)
+    unhealthy_threshold = lookup ( var.target_group , unhealthy_threshold)
     
   }
 }
