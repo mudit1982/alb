@@ -57,11 +57,11 @@ resource "aws_lb_target_group_attachment" "attach-app1" {
 ## Unable to Create HTTPS Listener as certificate is required
 resource "aws_lb_listener" "front_end" {
   load_balancer_arn = aws_lb.front.arn
-  port              = "80"
-  protocol          = "HTTP"
-  # count = length(var.port)
-  # port    = var.port[count.index]
-  # protocol  = var.protocol[count.index]
+  # port              = "80"
+  # protocol          = "HTTP"
+  count = length(var.port)
+  port    = var.port[count.index]
+  protocol  = var.protocol[count.index]
 
   default_action {
     type             = "forward"

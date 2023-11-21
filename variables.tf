@@ -66,7 +66,7 @@ variable "SUBNET_ID" {
 variable "security_groups" {
   description = "New Security Group to be provisioned for ALB"
   type        = string
-  default     = "sg1"
+  default     = "sg_alb"
 }
 
 variable "existing_security_group_ids" {
