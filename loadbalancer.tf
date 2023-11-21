@@ -28,7 +28,8 @@ resource "aws_lb_target_group" "front" {
 ##Enable/Disable stickiness  
   stickiness {
     enabled = var.stick_session
-    type    = "lb_cookie"
+    duration = var.stickiness_duration
+    # type    = "lb_cookie"
   }
 
   health_check {
