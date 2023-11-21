@@ -3,7 +3,7 @@ locals {
  
   }
 
-# locals {
+# locals {s
 #   target_group = {
 #     "healthy_threshold"  = 3
 #     "interval"           = 10
@@ -109,7 +109,7 @@ resource "aws_lb" "front" {
 # If enabled Terraform would not be able to delete the LB
   enable_deletion_protection = false
 
-  access_logs {
+  access_logs { 
     bucket  = var.s3_bucket_for_logs
     prefix  = "test-lb"
     enabled = true
