@@ -68,10 +68,10 @@ resource "aws_lb_listener" "front_end" {
     target_group_arn = aws_lb_target_group.front.arn
   }
 
-  # stickiness {
-  #       enabled  = true
-  #       duration = var.stickiness_duration
-  #     }
+  stickiness {
+        enabled  = var.stickiness_listener
+        duration = var.stickiness_listener_duration
+      }
 
   
 }
