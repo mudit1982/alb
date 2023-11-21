@@ -6,7 +6,7 @@ existing_security_group_ids=["sg-0fa3f7060ad66d3be"]
 port = ["80","8080"]
 protocol=["HTTP","HTTP"]
 stick_session=true
-stickiness_duration=600
+# stickiness_duration=600
 
 alb_tags = {
       TicketReference            = "CHG0050760"

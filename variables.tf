@@ -209,11 +209,11 @@ variable "stick_session" {
 
 }
 
-variable "stickiness_duration" {
-  type    = number
-  default = 600
+# variable "stickiness_duration" {
+#   type    = number
+#   default = 600
 
-}
+# }
 
 variable "target_group" {
   type = map(string)
