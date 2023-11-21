@@ -54,7 +54,7 @@ resource "aws_lb_target_group_attachment" "attach-app1" {
   port             = 80
 }
 
-## Unable to Create HTTPS Listener as certificate is required
+## Unable to Create HTTPS Listener as certificate is required  and
 resource "aws_lb_listener" "front_end" {
   load_balancer_arn = aws_lb.front.arn
   # port              = "80"
