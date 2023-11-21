@@ -6,7 +6,7 @@ existing_security_group_ids=["sg-0fa3f7060ad66d3be"]
 port = ["80","8080"]
 protocol=["HTTP","HTTP"]
 stick_session=true
-s3_bucket_for_logs="egalbdemo2023Infos"
+s3_bucket_for_logs="egalbdemo2023"
 
 
 
