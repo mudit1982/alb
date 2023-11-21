@@ -28,8 +28,7 @@ resource "aws_lb_target_group" "front" {
 ##Enable/Disable stickiness  
   stickiness {
     enabled = var.stick_session
-    duration = var.stickiness_duration
-    # type    = "lb_cookie"
+    type    = "lb_cookie"
   }
 
   health_check {
@@ -68,6 +67,13 @@ resource "aws_lb_listener" "front_end" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.front.arn
   }
+
+  stickiness {
+        enabled  = true
+        duration = var.stickiness_duration
+      }
+
+  
 }
 
 module "aws_security_group" {
