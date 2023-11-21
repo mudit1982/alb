@@ -208,10 +208,10 @@ variable "stick_session" {
   default = true
 
 }
-variable "s3_bucket_for_logs" {
-  type    = string
-  default = ""
-}
+# variable "s3_bucket_for_logs" {
+#   type    = string
+#   default = ""
+# }
 
 
 
