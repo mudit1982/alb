@@ -210,17 +210,6 @@ variable "stick_session" {
 }
 
 
-variable "stickiness_listener" {
-  type    = bool
-  default = true
-
-}
-
-variable "stickiness_listener_duration" {
-  type    = number
-  default = 600
-
-}
 
 variable "target_group" {
   type = map(string)
