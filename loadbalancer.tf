@@ -140,10 +140,10 @@ resource "aws_lb" "front" {
       VPC-id = var.VPCID})
   }
 
-#   resource "aws_wafregional_web_acl_association" "foo" {
-#   count = "${var.internal_load_balancer ? 0 : 1}"
-#   resource_arn = aws_lb.front.arn
-#   web_acl_id   = var.web_acl_id
-# } 
+  resource "aws_wafregional_web_acl_association" "foo" {
+  count = "${var.internal_load_balancer ? 0 : 1}"
+  resource_arn = aws_lb.front.arn
+  web_acl_id   = var.web_acl_id
+} 
 
   
