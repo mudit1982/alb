@@ -1,4 +1,6 @@
 VPCID="vpc-0419802ed12eec58a"
+account_id="215691912540"
+
 #EC2 instances to be added as target group
 instance=["i-09b8d6cf9951d36f0","i-036266f11264351fe"]
 SUBNET_ID=["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7"]
@@ -9,6 +11,7 @@ protocol=["HTTP","HTTP"]
 # protocol="HTTP"
 stick_session=true
 s3_bucket_for_logs="egalbdemo2023"
+certificate_id="edd0bad0-21c4-410a-907d-32efac02f8b8"
 
 #True for Internal Load Balancer and False for External Load Balancer
 internal_load_balancer=false

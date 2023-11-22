@@ -5,6 +5,13 @@ variable "region" {
   default     = "us-east-2"
 }
 
+
+variable "account_id" {
+  description = "AWS Account ID"
+  type        = number
+  default     = ""
+}
+
 variable "VPCID" {
   type        = string
   description = "The ID of the VPC that the instance security group belongs to"
@@ -22,6 +29,14 @@ variable "secret_key" {
   description = "The secret_key that belongs to the IAM user"
   type        = string
   sensitive   = true
+  default     = ""
+}
+
+
+
+variable "certificate_id" {
+  description = "Certificate ID for the HTTPS Lisetner"
+  type        = string
   default     = ""
 }
 
