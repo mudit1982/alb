@@ -39,7 +39,7 @@ resource "aws_lb_target_group" "front" {
     path                = lookup ( var.target_group , "path")
     port                = lookup ( var.target_group , "port")
     protocol            = lookup ( var.target_group , "protocol")
-    timeout             = lookup ( var.target_group , "timeout")
+    timeout             = lookup  ( var.target_group , "timeout")
     unhealthy_threshold = lookup ( var.target_group , "unhealthy_threshold")
     
   }
@@ -55,8 +55,10 @@ resource "aws_lb_target_group_attachment" "attach-app1" {
 }
 
 ## Unable to Create HTTPS Listener as certificate is required  and
+##Listenr for Internal Load Balancer
 resource "aws_lb_listener" "front_end" {
-  load_balancer_arn = aws_lb.front.arn
+  count = "${var.internal_load_balancer ? 1 : 0}"
+  load_balancer_arn = aws_lb.front-internal.arn
   # port              = "80"
   # protocol          = "HTTP"
   count = length(var.port)
@@ -70,6 +72,25 @@ resource "aws_lb_listener" "front_end" {
 
 
 }
+
+##Listner for External Load Balancer
+resource "aws_lb_listener" "front_end" {
+  count = "${var.internal_load_balancer ? 0 : 1}"
+  load_balancer_arn = aws_lb.front-external.arn
+  # port              = "80"
+  # protocol          = "HTTP"
+  count = length(var.port)
+  port    = var.port[count.index]
+  protocol  = var.protocol[count.index]
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.front.arn
+  }
+
+
+}
+
 
 module "aws_security_group" {
   source      = "./modules/security_group"
@@ -157,7 +178,7 @@ resource "aws_lb" "front-external" {
 
   resource "aws_wafregional_web_acl_association" "foo" {
   count = "${var.internal_load_balancer ? 0 : 1}"
-  resource_arn = aws_lb.front-external.arn
+  resource_arn = aws_lb.front-external[*].arn
   web_acl_id   = var.web_acl_id
 } 
 
