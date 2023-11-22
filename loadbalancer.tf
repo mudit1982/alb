@@ -57,8 +57,7 @@ resource "aws_lb_target_group_attachment" "attach-app1" {
 ## Unable to Create HTTPS Listener as certificate is required  and
 ##Listenr for Internal Load Balancer
 resource "aws_lb_listener" "front_end-internal-lb" {
-  # count = "${var.internal_load_balancer ? 1 : 0}"
-  load_balancer_arn = aws_lb.front-internal[0].arn
+  load_balancer_arn = aws_lb.front-internal.arn
   # port              = "80"
   # protocol          = "HTTP"
   count = length(var.port)
@@ -71,26 +70,6 @@ resource "aws_lb_listener" "front_end-internal-lb" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.front.arn
   }
-depends_on = [aws_lb.front-internal]
-
-}
-
-##Listner for External Load Balancer
-resource "aws_lb_listener" "front_end-external-lb" {
-  # count = "${var.internal_load_balancer ? 0 : 1}"
-  load_balancer_arn = aws_lb.front-external[0].arn
-  # port              = "80"
-  # protocol          = "HTTP"
-  count = length(var.port)
-  port    = var.port[count.index]
-  protocol  = var.protocol[count.index]
-
-
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.front.arn
-  }
-depends_on = [aws_lb.front-external]
 
 }
 
@@ -120,9 +99,9 @@ resource "aws_security_group_rule" "ingress_rules" {
 }
 
 
-## Provision Internal Load Balancer
-resource "aws_lb" "front-internal" {
-  count = "${var.internal_load_balancer ? 1 : 0}"
+##Provision External/Internal based on variable internal_load_balancer load balancer
+resource "aws_lb" "front" {
+  # count = "${var.internal_load_balancer ? 0 : 1}"
   name               = "EG-ALB-TEST"
   internal           = var.internal_load_balancer
   load_balancer_type = "application"
@@ -134,41 +113,11 @@ resource "aws_lb" "front-internal" {
 # If enabled Terraform would not be able to delete the LB
   enable_deletion_protection = false
 
-  access_logs { 
-    bucket  = var.s3_bucket_for_logs
-    prefix  = "test-lb"
-    enabled = true
-  }
-
-  tags = merge(tomap(var.alb_tags),{ApplicationFunctionality = var.ApplicationFunctionality, 
-      ApplicationOwner = var.ApplicationOwner, 
-      ApplicationTeam = var.ApplicationTeam, 
-      BusinessOwner = var.BusinessOwner,
-      BusinessTower = var.BusinessTower,
-      ServiceCriticality = var.ServiceCriticality,
-      VPC-id = var.VPCID})
-  }
-
-
-##Provision External(internet-facing) load balancer
-resource "aws_lb" "front-external" {
-  count = "${var.internal_load_balancer ? 0 : 1}"
-  name               = "EG-ALB-TEST"
-  internal           = var.internal_load_balancer
-  load_balancer_type = "application"
-  # security_groups    = [module.aws_security_group.id]
-  security_groups    =  concat([module.aws_security_group.id] , var.existing_security_group_ids[*])
-  # security_groups     = [module.security_group.id]
-  subnets            = [for subnet in var.SUBNET_ID : subnet]
-  
-# If enabled Terraform would not be able to delete the LB
-  enable_deletion_protection = false
-
-  access_logs { 
-    bucket  = var.s3_bucket_for_logs
-    prefix  = "test-lb"
-    enabled = true
-  }
+  # access_logs { 
+  #   bucket  = var.s3_bucket_for_logs
+  #   prefix  = "test-lb"
+  #   enabled = true
+  # }
 
   tags = merge(tomap(var.alb_tags),{ApplicationFunctionality = var.ApplicationFunctionality, 
       ApplicationOwner = var.ApplicationOwner, 
@@ -181,7 +130,7 @@ resource "aws_lb" "front-external" {
 
   resource "aws_wafregional_web_acl_association" "foo" {
   count = "${var.internal_load_balancer ? 0 : 1}"
-  resource_arn = aws_lb.front-external[0].arn
+  resource_arn = aws_lb.front.arn
   web_acl_id   = var.web_acl_id
 } 
 
