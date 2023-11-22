@@ -186,7 +186,7 @@ resource "aws_lb" "front-external" {
 
   resource "aws_wafregional_web_acl_association" "foo" {
   count = "${var.internal_load_balancer ? 0 : 1}"
-  resource_arn = aws_lb.front-external[].arn
+  resource_arn = aws_lb.front-external[0].arn
   web_acl_id   = var.web_acl_id
 } 
 
