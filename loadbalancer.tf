@@ -61,9 +61,14 @@ resource "aws_lb_listener" "front_end-internal-lb" {
   load_balancer_arn = aws_lb.front-internal.arn
   # port              = "80"
   # protocol          = "HTTP"
-  count = length(var.port)
-  port    = var.port[count.index]
-  protocol  = var.protocol[count.index]
+  # count = length(var.port)
+  # port    = var.port[count.index]
+  # protocol  = var.protocol[count.index]
+    port    = var.port
+  protocol  = var.protocol
+
+
+
 
   default_action {
     type             = "forward"
@@ -79,9 +84,12 @@ resource "aws_lb_listener" "front_end-external-lb" {
   load_balancer_arn = aws_lb.front-external.arn
   # port              = "80"
   # protocol          = "HTTP"
-  count = length(var.port)
-  port    = var.port[count.index]
-  protocol  = var.protocol[count.index]
+  # count = length(var.port)
+  # port    = var.port[count.index]
+  # protocol  = var.protocol[count.index]
+
+  port    = var.port
+  protocol  = var.protocol
 
   default_action {
     type             = "forward"

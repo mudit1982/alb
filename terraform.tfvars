@@ -3,8 +3,10 @@ VPCID="vpc-0419802ed12eec58a"
 instance=["i-09b8d6cf9951d36f0","i-036266f11264351fe"]
 SUBNET_ID=["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7"]
 existing_security_group_ids=["sg-0fa3f7060ad66d3be"]
-port = ["80","8080"]
-protocol=["HTTP","HTTP"]
+# port = ["80","8080"]
+# protocol=["HTTP","HTTP"]
+port="80"
+protocol="HTTP"
 stick_session=true
 s3_bucket_for_logs="egalbdemo2023"
 
