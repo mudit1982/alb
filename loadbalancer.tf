@@ -58,7 +58,7 @@ resource "aws_lb_target_group_attachment" "attach-app1" {
 ##Listenr for Internal Load Balancer
 resource "aws_lb_listener" "front_end-internal-lb" {
   count = "${var.internal_load_balancer ? 1 : 0}"
-  load_balancer_arn = aws_lb.front-internal[*].arn
+  load_balancer_arn = aws_lb.front-internal[].arn
   # port              = "80"
   # protocol          = "HTTP"
   # count = length(var.port)
@@ -81,7 +81,7 @@ resource "aws_lb_listener" "front_end-internal-lb" {
 ##Listner for External Load Balancer
 resource "aws_lb_listener" "front_end-external-lb" {
   count = "${var.internal_load_balancer ? 0 : 1}"
-  load_balancer_arn = aws_lb.front-external[*].arn
+  load_balancer_arn = aws_lb.front-external[].arn
   # port              = "80"
   # protocol          = "HTTP"
   # count = length(var.port)
@@ -186,7 +186,7 @@ resource "aws_lb" "front-external" {
 
   resource "aws_wafregional_web_acl_association" "foo" {
   count = "${var.internal_load_balancer ? 0 : 1}"
-  resource_arn = aws_lb.front-external[*].arn
+  resource_arn = aws_lb.front-external[].arn
   web_acl_id   = var.web_acl_id
 } 
 
