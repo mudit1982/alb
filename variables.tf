@@ -43,30 +43,18 @@ variable "instance" {
   type        = list(any)
 }
 
-# variable "port" {
-#   description = "List of Ports for the Listners"
-#   default     = [""]
-#   type        = list(any)
-# }
-
-# variable "protocol" {
-#   description = "List of Protocols for the Listeners"
-#   default     = [""]
-#   type        = list(any)
-# }
-
-
 variable "port" {
   description = "List of Ports for the Listners"
-  default     = ""
-  type        = string
+  default     = [""]
+  type        = list(any)
 }
 
 variable "protocol" {
   description = "List of Protocols for the Listeners"
-  default     = ""
-  type        = string
+  default     = [""]
+  type        = list(any)
 }
+
 
 
 variable "SUBNET_ID" {

@@ -57,16 +57,13 @@ resource "aws_lb_target_group_attachment" "attach-app1" {
 ## Unable to Create HTTPS Listener as certificate is required  and
 ##Listenr for Internal Load Balancer
 resource "aws_lb_listener" "front_end-internal-lb" {
-  count = "${var.internal_load_balancer ? 1 : 0}"
+  # count = "${var.internal_load_balancer ? 1 : 0}"
   load_balancer_arn = aws_lb.front-internal[0].arn
   # port              = "80"
   # protocol          = "HTTP"
-  # count = length(var.port)
-  # port    = var.port[count.index]
-  # protocol  = var.protocol[count.index]
-    port    = var.port
-  protocol  = var.protocol
-
+  count = length(var.port)
+  port    = var.port[count.index]
+  protocol  = var.protocol[count.index]
 
 
 
@@ -74,28 +71,26 @@ resource "aws_lb_listener" "front_end-internal-lb" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.front.arn
   }
-
+depends_on = aws_lb.front-internal
 
 }
 
 ##Listner for External Load Balancer
 resource "aws_lb_listener" "front_end-external-lb" {
-  count = "${var.internal_load_balancer ? 0 : 1}"
+  # count = "${var.internal_load_balancer ? 0 : 1}"
   load_balancer_arn = aws_lb.front-external[0].arn
   # port              = "80"
   # protocol          = "HTTP"
-  # count = length(var.port)
-  # port    = var.port[count.index]
-  # protocol  = var.protocol[count.index]
+  count = length(var.port)
+  port    = var.port[count.index]
+  protocol  = var.protocol[count.index]
 
-  port    = var.port
-  protocol  = var.protocol
 
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.front.arn
   }
-
+depends_on = aws_lb.front-external
 
 }
 
