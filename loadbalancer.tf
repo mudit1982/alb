@@ -113,11 +113,11 @@ resource "aws_lb" "front" {
 # If enabled Terraform would not be able to delete the LB
   enable_deletion_protection = false
 
-  # access_logs { 
-  #   bucket  = var.s3_bucket_for_logs
-  #   prefix  = "test-lb"
-  #   enabled = true
-  # }
+  access_logs { 
+    bucket  = var.s3_bucket_for_logs
+    prefix  = "test-lb"
+    enabled = true
+  }
 
   tags = merge(tomap(var.alb_tags),{ApplicationFunctionality = var.ApplicationFunctionality, 
       ApplicationOwner = var.ApplicationOwner, 
@@ -128,10 +128,10 @@ resource "aws_lb" "front" {
       VPC-id = var.VPCID})
   }
 
-  resource "aws_wafregional_web_acl_association" "foo" {
-  count = "${var.internal_load_balancer ? 0 : 1}"
-  resource_arn = aws_lb.front.arn
-  web_acl_id   = var.web_acl_id
-} 
+#   resource "aws_wafregional_web_acl_association" "foo" {
+#   count = "${var.internal_load_balancer ? 0 : 1}"
+#   resource_arn = aws_lb.front.arn
+#   web_acl_id   = var.web_acl_id
+# } 
 
   
