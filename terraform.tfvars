@@ -5,10 +5,6 @@ account_id="215691912540"
 instance=["i-09b8d6cf9951d36f0","i-036266f11264351fe"]
 SUBNET_ID=["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7"]
 existing_security_group_ids=["sg-0fa3f7060ad66d3be"]
-port = ["80","8080"]
-protocol=["HTTP","HTTP"]
-# port="80"
-# protocol="HTTP"
 stick_session=true
 s3_bucket_for_logs="egalbdemo2023"
 certificate_id="edd0bad0-21c4-410a-907d-32efac02f8b8"
@@ -16,12 +12,8 @@ certificate_id="edd0bad0-21c4-410a-907d-32efac02f8b8"
 #True for Internal Load Balancer and False for External Load Balancer
 internal_load_balancer=false
 
-##ID of the WAF to be associated with the External Load Balancer 
-web_acl_id="arn:aws:wafv2:us-east-2:215691912540:regional/webacl/WebACL_Demo/adc73673-2072-4295-bfd7-3747ee5777db"
-
-
-
-
+##ARN of the WAF to be associated with the External Load Balancer 
+web_acl_arn="arn:aws:wafv2:us-east-2:215691912540:regional/webacl/WebACL_Demo/adc73673-2072-4295-bfd7-3747ee5777db"
 
 # stickiness_duration=600
 
@@ -43,7 +35,7 @@ BusinessTower="abc@gmail.com"
 ServiceCriticality="Medium"
 
 
-## Modify Rules per Internal or External Load Balancer
+## Modify Rules for Security Group per Internal or External Load Balancer
 ingress_rules =[
  
 {

@@ -237,7 +237,7 @@ variable "internal_load_balancer" {
 }
 
 
-variable "web_acl_id" {
+variable "web_acl_arn" {
   type    = string
   default = ""
 }
