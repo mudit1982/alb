@@ -17,7 +17,7 @@ certificate_id="edd0bad0-21c4-410a-907d-32efac02f8b8"
 internal_load_balancer=false
 
 ##ID of the WAF to be associated with the External Load Balancer 
-web_acl_id="adc73673-2072-4295-bfd7-3747ee5777db"
+web_acl_id="arn:aws:wafv2:us-east-2:215691912540:regional/webacl/WebACL_Demo/adc73673-2072-4295-bfd7-3747ee5777db"
 
 
 
