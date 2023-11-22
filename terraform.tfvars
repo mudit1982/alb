@@ -6,7 +6,15 @@ existing_security_group_ids=["sg-0fa3f7060ad66d3be"]
 port = ["80","8080"]
 protocol=["HTTP","HTTP"]
 stick_session=true
-# s3_bucket_for_logs="egalbdemo2023"
+s3_bucket_for_logs="egalbdemo2023"
+
+#True for Internal Load Balancer and False for External Load Balancer
+internal_load_balancer=true
+
+##ID of the WAF to be associated with the External Load Balancer 
+web_acl_id=""
+
+
 
 
 
@@ -30,7 +38,7 @@ BusinessTower="abc@gmail.com"
 ServiceCriticality="Medium"
 
 
-
+## Modify Rules per Internal or External Load Balancer
 ingress_rules =[
  
 {

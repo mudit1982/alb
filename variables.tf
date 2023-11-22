@@ -208,11 +208,24 @@ variable "stick_session" {
   default = true
 
 }
-# variable "s3_bucket_for_logs" {
-#   type    = string
-#   default = ""
-# }
 
+variable "s3_bucket_for_logs" {
+  type    = string
+  default = ""
+}
+
+
+
+variable "internal_load_balancer" {
+  type    = bool
+  default = true
+}
+
+
+variable "web_acl_id" {
+  type    = string
+  default = ""
+}
 
 
 variable "target_group" {

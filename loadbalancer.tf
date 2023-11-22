@@ -96,10 +96,11 @@ resource "aws_security_group_rule" "ingress_rules" {
 }
 
 
-
-resource "aws_lb" "front" {
+## Provision Internal Load Balancer
+resource "aws_lb" "front-internal" {
+  count = "${var.internal_load_balancer ? 1 : 0}"
   name               = "EG-ALB-TEST"
-  internal           = false
+  internal           = var.internal_load_balancer
   load_balancer_type = "application"
   # security_groups    = [module.aws_security_group.id]
   security_groups    =  concat([module.aws_security_group.id] , var.existing_security_group_ids[*])
@@ -109,11 +110,11 @@ resource "aws_lb" "front" {
 # If enabled Terraform would not be able to delete the LB
   enable_deletion_protection = false
 
-  # access_logs { 
-  #   bucket  = var.s3_bucket_for_logs
-  #   prefix  = "test-lb"
-  #   enabled = true
-  # }
+  access_logs { 
+    bucket  = var.s3_bucket_for_logs
+    prefix  = "test-lb"
+    enabled = true
+  }
 
   tags = merge(tomap(var.alb_tags),{ApplicationFunctionality = var.ApplicationFunctionality, 
       ApplicationOwner = var.ApplicationOwner, 
@@ -123,3 +124,41 @@ resource "aws_lb" "front" {
       ServiceCriticality = var.ServiceCriticality,
       VPC-id = var.VPCID})
   }
+
+
+##Provision External(internet-facing) load balancer
+resource "aws_lb" "front-external" {
+  count = "${var.internal_load_balancer ? 0 : 1}"
+  name               = "EG-ALB-TEST"
+  internal           = var.internal_load_balancer
+  load_balancer_type = "application"
+  # security_groups    = [module.aws_security_group.id]
+  security_groups    =  concat([module.aws_security_group.id] , var.existing_security_group_ids[*])
+  # security_groups     = [module.security_group.id]
+  subnets            = [for subnet in var.SUBNET_ID : subnet]
+  
+# If enabled Terraform would not be able to delete the LB
+  enable_deletion_protection = false
+
+  access_logs { 
+    bucket  = var.s3_bucket_for_logs
+    prefix  = "test-lb"
+    enabled = true
+  }
+
+  tags = merge(tomap(var.alb_tags),{ApplicationFunctionality = var.ApplicationFunctionality, 
+      ApplicationOwner = var.ApplicationOwner, 
+      ApplicationTeam = var.ApplicationTeam, 
+      BusinessOwner = var.BusinessOwner,
+      BusinessTower = var.BusinessTower,
+      ServiceCriticality = var.ServiceCriticality,
+      VPC-id = var.VPCID})
+  }
+
+  resource "aws_wafregional_web_acl_association" "foo" {
+  count = "${var.internal_load_balancer ? 0 : 1}"
+  resource_arn = aws_lb.front-external.arn
+  web_acl_id   = var.web_acl_id
+} 
+
+  
