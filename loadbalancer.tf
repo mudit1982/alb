@@ -56,8 +56,8 @@ resource "aws_lb_target_group_attachment" "attach-app1" {
 
 ## Unable to Create HTTPS Listener as certificate is required  and
 ##Listenr for Internal Load Balancer
-resource "aws_lb_listener" "front_end-internal-lb" {
-  load_balancer_arn = aws_lb.front-internal.arn
+resource "aws_lb_listener" "front_end" {
+  load_balancer_arn = aws_lb.front.arn
   # port              = "80"
   # protocol          = "HTTP"
   count = length(var.port)
