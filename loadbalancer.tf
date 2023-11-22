@@ -71,7 +71,7 @@ resource "aws_lb_listener" "front_end-internal-lb" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.front.arn
   }
-depends_on = aws_lb.front-internal
+depends_on = [aws_lb.front-internal]
 
 }
 
@@ -90,7 +90,7 @@ resource "aws_lb_listener" "front_end-external-lb" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.front.arn
   }
-depends_on = aws_lb.front-external
+depends_on = [aws_lb.front-external]
 
 }
 
