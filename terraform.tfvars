@@ -11,10 +11,10 @@ stick_session=true
 s3_bucket_for_logs="egalbdemo2023"
 
 #True for Internal Load Balancer and False for External Load Balancer
-internal_load_balancer=true
+internal_load_balancer=false
 
 ##ID of the WAF to be associated with the External Load Balancer 
-web_acl_id=""
+web_acl_id="a178440c-6ceb-4c23-af4c-492339c3f6b7"
 
 
 
