@@ -105,10 +105,10 @@ resource "aws_lb" "front" {
   internal           = var.internal_load_balancer
   load_balancer_type = "application"
   # security_groups    = [module.aws_security_group.id]
-  security_groups    =  concat([module.new_security_group.id] , var.existing_security_group_ids[*])
+  security_groups    =  concat(module.new_security_group.id[*],var.existing_security_group_ids[*])
   # security_groups     = [module.security_group.id]
   subnets            = [for subnet in var.SUBNET_ID : subnet]
-  
+
 # If enabled Terraform would not be able to delete the LB
   enable_deletion_protection = false
 
