@@ -39,10 +39,6 @@ resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.front.arn
   port              = 80
   protocol          = "HTTP"
-  # count = length(var.port)
-  # port    = var.port[count.index]
-  # protocol  = var.protocol[count.index]
-
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.front.arn
@@ -65,38 +61,11 @@ resource "aws_alb_listener" "https" {
 }
 
 
-# module "aws_security_group" {
-#   source      = "./modules/security_group"
-#   # sg_count = length(var.security_groups)
-#   name = var.security_groups
-#   description = var.secgroupdescription
-#   vpc_id      = var.VPCID
-
-# } 
-
-
 module "new_security_group" {
   source = "./modules/security_group_new"
-  # security_rules = var.security_rules  
   security_rules = local.security_rules
   vpc_id = var.VPCID
-  # depends_on = [random_integer.ri]
 }
-
-# resource "aws_security_group_rule" "ingress_rules" {
-
-#   count = length(var.ingress_rules)
-
-#   type              = "ingress"
-#   from_port         = var.ingress_rules[count.index].from_port
-#   to_port           = var.ingress_rules[count.index].to_port
-#   protocol          = var.ingress_rules[count.index].protocol
-#   cidr_blocks       = [var.ingress_rules[count.index].cidr_block]
-#   description       = var.ingress_rules[count.index].description
-#   # security_group_id = module.aws_security_group.id[count.index]
-#   security_group_id = module.aws_security_group.id
-# }
-
 
 ##Provision External/Internal based on variable internal_load_balancer load balancer
 resource "aws_lb" "front" {
@@ -108,9 +77,7 @@ resource "aws_lb" "front" {
   security_groups    =  concat(module.new_security_group.id[*],var.existing_security_group_ids[*])
   # security_groups     = [module.security_group.id]
   subnets            = [for subnet in var.SUBNET_ID : subnet]
-
-# If enabled Terraform would not be able to delete the LB
-  enable_deletion_protection = false
+  enable_deletion_protection = true
 
   access_logs { 
     bucket  = var.s3_bucket_for_logs
