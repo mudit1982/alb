@@ -118,6 +118,7 @@ resource "aws_lb" "front" {
     enabled = true
   }
 
+
   tags = merge(tomap(var.alb_tags),{ApplicationFunctionality = var.ApplicationFunctionality, 
       Name = var.Name_ALB,
       ApplicationOwner = var.ApplicationOwner, 
