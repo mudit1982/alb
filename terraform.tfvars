@@ -1,4 +1,4 @@
-VPCID="vpc-0777935da25d06fe3"
+VPCID="vpc-0419802ed12eec58a"
 account_id="215691912540"
 
 #EC2 instances to be added as target group
