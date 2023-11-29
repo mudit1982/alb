@@ -2,9 +2,9 @@ VPCID="vpc-0777935da25d06fe3"
 account_id="215691912540"
 
 #EC2 instances to be added as target group
-instance=["i-09c60224997151113","i-0eae77ac8a59c19d8"]
-SUBNET_ID=["subnet-03585b0505602f1a7","subnet-03585b0505602f1a7"]
-existing_security_group_ids=["sg-0bd541cafc1955479"]
+instance=["i-059c3dd987f516592","i-02b437a17130fe818"]
+SUBNET_ID=["subnet-0b86a94123ccf1094","subnet-0bbf1e60c1a0f1db1"]
+existing_security_group_ids=["sg-0fa3f7060ad66d3be"]
 stick_session=true
 s3_bucket_for_logs="egalbdemo2023"
 certificate_id="edd0bad0-21c4-410a-907d-32efac02f8b8"
@@ -35,34 +35,6 @@ ApplicationTeam="Team1"
 BusinessOwner="abc@gmail.com"
 BusinessTower="abc@gmail.com"
 ServiceCriticality="Medium"
-
-
-## Modify Rules for Security Group per Internal or External Load Balancer
-ingress_rules =[
- 
-{
-      from_port   = "80"
-      to_port     = "80"
-      protocol    = "tcp"
-      cidr_block  = "192.168.161.215/32"
-      description = "ELB"
-    },
-
-    {
-      from_port   = "8080"
-      to_port     = "8080"
-      protocol    = "tcp"
-      cidr_block  = "192.168.161.215/32"
-      description = "ELB Port 8080"
-    },
-{
-      from_port   = "1234"
-      to_port     = "1234"
-      protocol    = "tcp"
-      cidr_block  = "192.168.161.215/32"
-      description = "ELB Port 1234"
-    }
-]
 
 
 
