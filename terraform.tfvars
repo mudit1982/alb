@@ -16,6 +16,8 @@ internal_load_balancer=false
 web_acl_arn="arn:aws:wafv2:us-east-2:215691912540:regional/webacl/WebACL_Demo/adc73673-2072-4295-bfd7-3747ee5777db"
 
 # stickiness_duration=600
+##Name of the ALB
+Name_ALB = "EG-ALB-Test"
 
 alb_tags = {
       TicketReference            = "CHG0050760"

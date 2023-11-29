@@ -16,6 +16,11 @@ variable "VPCID" {
   description = "The ID of the VPC that the instance security group belongs to"
 }
 
+variable "Name_ALB" {
+  type        = string
+  description = "Name of the ALB"
+}
+
 #Define IAM User Access Key
 variable "access_key" {
   description = "The access_key that belongs to the IAM user"
