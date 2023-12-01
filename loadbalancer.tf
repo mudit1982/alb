@@ -51,7 +51,7 @@ resource "aws_alb_listener" "https" {
   load_balancer_arn = aws_lb.front.arn
   port              = 443
   protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  ssl_policy        = "ELBSecurityPolicy-TLS-1-2-Ext-2018-06"
   certificate_arn = "arn:aws:acm:${var.region}:${var.account_id}:certificate/${var.certificate_id}"
   default_action {
     type             = "forward"
@@ -103,11 +103,3 @@ resource "aws_wafv2_web_acl_association" "web_acl_external_lb" {
   web_acl_arn  = var.web_acl_arn
 }
 
-resource "aws_load_balancer_listener_policy" "wu-tang-listener-policies-443" {
-  load_balancer_name = aws_lb.front.name
-  load_balancer_port = 443
-
-  policy_names = [
-    "ELBSecurityPolicy-TLS-1-2-Ext-2018-06",
-  ]
-}
