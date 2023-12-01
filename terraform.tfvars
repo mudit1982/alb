@@ -2,8 +2,8 @@ VPCID="vpc-0419802ed12eec58a"
 account_id="215691912540"
 
 #EC2 instances to be added as target group
-instance=["i-059c3dd987f516592","i-02b437a17130fe818"]
-SUBNET_ID=["subnet-0b86a94123ccf1094","subnet-0bbf1e60c1a0f1db1"]
+instance=["i-059c3dd987f516592","i-02b437a17130fe818"]      
+SUBNET_ID=["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7"]
 existing_security_group_ids=["sg-0fa3f7060ad66d3be"]
 stick_session=true
 s3_bucket_for_logs="egalbdemo2023"
