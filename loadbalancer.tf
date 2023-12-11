@@ -5,11 +5,11 @@ resource "aws_lb_target_group" "front" {
   protocol = "HTTP"
   vpc_id   = var.VPCID
 
-##Enable/Disable stickiness  
-  stickiness {
-    enabled = var.stick_session
-    type    = "lb_cookie"
-  }
+  ##Enable/Disable stickiness  
+    stickiness {
+      enabled = var.stick_session
+      type    = "lb_cookie"
+    }
 
   health_check {
     enabled             = true
@@ -23,6 +23,15 @@ resource "aws_lb_target_group" "front" {
     unhealthy_threshold = lookup ( var.target_group , "unhealthy_threshold")
     
   }
+
+    tags = merge(tomap(var.alb_tags),{ApplicationFunctionality = var.ApplicationFunctionality, 
+      Name = var.Name_ALB,
+      ApplicationOwner = var.ApplicationOwner, 
+      ApplicationTeam = var.ApplicationTeam, 
+      BusinessOwner = var.BusinessOwner,
+      BusinessTower = var.BusinessTower,
+      ServiceCriticality = var.ServiceCriticality,
+      VPC-id = var.VPCID})
 }
 
 
