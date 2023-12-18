@@ -2,7 +2,7 @@ VPCID="vpc-0419802ed12eec58a"
 account_id="215691912540"
 
 #EC2 instances to be added as target group
-instance=["i-059c3dd987f516592","i-02b437a17130fe818"]      
+instance=["i-0d425bf803ab92194","i-0a647898ed83b2266"]      
 SUBNET_ID=["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7"]
 existing_security_group_ids=["sg-0fa3f7060ad66d3be"]
 stick_session=true
