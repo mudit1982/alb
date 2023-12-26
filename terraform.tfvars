@@ -7,13 +7,13 @@ SUBNET_ID=["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7"]
 existing_security_group_ids=["sg-0fa3f7060ad66d3be"]
 stick_session=true
 s3_bucket_for_logs="egalbdemo2023"
-certificate_id="edd0bad0-21c4-410a-907d-32efac02f8b8"
+certificate_id="2442bec6-4466-4fbe-a1b9-837edef2d207"
 
 #True for Internal Load Balancer and False for External Load Balancer
 internal_load_balancer=false
 
 ##ARN of the WAF to be associated with the External Load Balancer 
-web_acl_arn="arn:aws:acm:us-east-2:215691912540:certificate/2442bec6-4466-4fbe-a1b9-837edef2d207"
+web_acl_arn="arn:aws:wafv2:us-east-2:215691912540:regional/webacl/WebACL_Demo/adc73673-2072-4295-bfd7-3747ee5777db"
 
 # stickiness_duration=600
 ##Name of the ALB
