@@ -13,7 +13,7 @@ certificate_id="edd0bad0-21c4-410a-907d-32efac02f8b8"
 internal_load_balancer=false
 
 ##ARN of the WAF to be associated with the External Load Balancer 
-web_acl_arn="arn:aws:wafv2:us-east-2:215691912540:regional/webacl/WebACL_Demo/adc73673-2072-4295-bfd7-3747ee5777db"
+web_acl_arn="arn:aws:acm:us-east-2:215691912540:certificate/2442bec6-4466-4fbe-a1b9-837edef2d207"
 
 # stickiness_duration=600
 ##Name of the ALB
