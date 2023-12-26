@@ -7,7 +7,7 @@ SUBNET_ID=["subnet-0b86a94123ccf1094","subnet-04eff055558594bd7"]
 existing_security_group_ids=["sg-0fa3f7060ad66d3be"]
 stick_session=true
 s3_bucket_for_logs="egalbdemo2023"
-certificate_id="2442bec6-4466-4fbe-a1b9-837edef2d207"
+certificate_id="5c4a4330-e55d-47e2-8654-f7f836a1be3e"
 
 #True for Internal Load Balancer and False for External Load Balancer
 internal_load_balancer=false
