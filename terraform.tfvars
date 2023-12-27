@@ -10,7 +10,7 @@ s3_bucket_for_logs="egalbdemo2023"
 certificate_id="5c4a4330-e55d-47e2-8654-f7f836a1be3e"
 
 #True for Internal Load Balancer and False for External Load Balancer
-internal_load_balancer=false
+internal_load_balancer=true
 
 ##ARN of the WAF to be associated with the External Load Balancer 
 web_acl_arn="arn:aws:wafv2:us-east-2:215691912540:regional/webacl/WebACL_Demo/adc73673-2072-4295-bfd7-3747ee5777db"
