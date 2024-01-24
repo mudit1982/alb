@@ -21,6 +21,11 @@ variable "Name_ALB" {
   description = "Name of the ALB"
 }
 
+variable "Name_Target_Group" {
+  type        = string
+  description = "Name of the Target Group"
+}
+
 #Define IAM User Access Key
 variable "access_key" {
   description = "The access_key that belongs to the IAM user"
